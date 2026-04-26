@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 import { TAGS, getTagByName } from '../../data/tags';
+import { url } from '../../utils';
 
 function slug(id: string) { return id.replace(/\.mdx?$/, ''); }
 
@@ -29,7 +30,7 @@ const { tag, articles } = Astro.props;
     {articles.map(article => (
       <div class="article-grid__item">
         <div class="article-card">
-          <a href={`/${slug(article.id)}/`} class="article-card__link">{article.data.title}</a>
+          <a href={url(`/${slug(article.id)}/`)} class="article-card__link">{article.data.title}</a>
           {article.data.description && (
             <p class="article-card__desc">{article.data.description}</p>
           )}

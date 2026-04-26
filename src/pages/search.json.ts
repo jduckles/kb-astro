@@ -4,8 +4,9 @@ import { getCollection } from 'astro:content';
 export const GET: APIRoute = async () => {
   const articles = await getCollection('articles', ({ data }) => !data.standalone);
 
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const index = articles.map(article => ({
-    id: `/${article.id.replace(/\.mdx?$/, '')}/`,
+    id: `${base}/${article.id.replace(/\.mdx?$/, '')}/`,
     title: article.data.title,
     description: article.data.description ?? '',
     tags: (article.data.tags ?? []).join(' '),

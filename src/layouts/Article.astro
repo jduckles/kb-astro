@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro';
 import { SITE } from '../config';
+import { url } from '../utils';
 import { getTagByName } from '../data/tags';
 
 interface Props {
@@ -23,7 +24,7 @@ const editUrl = SITE.githubRepo && filePath
   <article class="article-page">
     <header class="article-header">
       {!standalone && (
-        <a href="/" class="article-header__back">
+        <a href={url('/')} class="article-header__back">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"/>
@@ -51,7 +52,7 @@ const editUrl = SITE.githubRepo && filePath
             const t = getTagByName(tag);
             return (
               <a
-                href={`/tags/${tag}/`}
+                href={url(`/tags/${tag}/`)}
                 class="tag"
                 style={t?.color ? `--tag-color:${t.color}` : undefined}
               >{t?.label ?? tag}</a>

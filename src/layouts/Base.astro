@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../config';
+import { url } from '../utils';
 import '../styles/global.css';
 
 interface Props {
@@ -23,7 +24,7 @@ const currentPath = Astro.url.pathname;
   <body>
     <header class="site-header">
       <div class="site-header__inner">
-        <a href="/" class="site-header__logo">{SITE.title}</a>
+        <a href={url('/')} class="site-header__logo">{SITE.title}</a>
         <button class="site-header__menu-toggle" aria-label="Toggle menu" aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -34,7 +35,7 @@ const currentPath = Astro.url.pathname;
         </button>
         <nav class="site-nav" id="site-nav">
           {SITE.nav.map(link => (
-            <a href={link.href} aria-current={currentPath === link.href ? 'page' : undefined}>
+            <a href={url(link.href)} aria-current={currentPath === link.href ? 'page' : undefined}>
               {link.label}
             </a>
           ))}
